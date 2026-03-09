@@ -8,9 +8,11 @@ export const App = () => {
   const [query, setQuery] = useState('');
 
   const visibleMovies = moviesFromServer.filter(movie => {
+    const preparedQuery = query.toLowerCase().trim();
+
     return (
-      movie.title.toLowerCase().includes(query.toLowerCase().trim()) ||
-      movie.description.toLowerCase().includes(query.toLowerCase().trim())
+      movie.title.toLowerCase().includes(preparedQuery) ||
+      movie.description.toLowerCase().includes(preparedQuery)
     );
   });
 
@@ -30,7 +32,7 @@ export const App = () => {
                 id="search-query"
                 className="input"
                 placeholder="Type search word"
-                onChange={e => setQuery(e.target.value)}
+                onChange={event => setQuery(event.target.value)}
               />
             </div>
           </div>
